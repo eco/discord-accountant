@@ -1,0 +1,34 @@
+{
+  // Included for convenience (sharing test configs)
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program (ts-node)",
+      "runtimeArgs": ["-r", "ts-node/register", "-r", "dotenv/config"],
+      "outFiles": [],
+      "args": ["${workspaceFolder}/src/index.ts"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run tests",
+      "args": ["-r", "dotenv/config"],
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-mocha",
+      "runtimeArgs": ["src/**/*.test.ts", "--timeout", "0"],
+      "outFiles": [],
+      "protocol": "inspector"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run test (current file)",
+      "args": ["-r", "dotenv/config"],
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/ts-mocha",
+      "runtimeArgs": ["${file}", "--timeout", "0"],
+      "outFiles": [],
+      "protocol": "inspector"
+    }
+  ]
+}

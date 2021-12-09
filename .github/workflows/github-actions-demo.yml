@@ -1,0 +1,35 @@
+name: Testing
+on: push
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    env:
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_DATABASE_TEST: testdb
+      DB_PORT: 3306
+    steps:
+      - name: Start MySQL
+        run: |
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE_TEST }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Add fake slack webhook
+        run: sed -i -e '/SLACK_WEBHOOK =/ s/= .*/= "slack_webhook"/' src/config_sample.ts
+
+      - name: Rename config_sample.ts to config.ts
+        run: mv src/config_sample.ts src/config.ts
+
+      - name: Installing dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test

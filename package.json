@@ -1,0 +1,31 @@
+{
+  "name": "discordbot",
+  "version": "1.0.0",
+  "description": "Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node -r dotenv/config dist/index.js",
+    "test": "nyc --reporter=text --reporter=lcov ts-mocha -r dotenv/config src/**/*.test.ts src/**/**/*.test.ts"
+  },
+  "author": "Eco",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "discord-akairo": "^8.1.0",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "mysql2": "^2.2.5"
+  },
+  "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.11.0",
+    "@types/sinon": "^10.0.4",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "sinon": "^11.1.2",
+    "ts-mocha": "^8.0.0",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4"
+  }
+}
