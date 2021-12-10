@@ -24,7 +24,7 @@ Again, [here’s the link](https://eco.com/discord/accountant) to add The Accoun
 
 ## For more
 
-For more about The Accountant Bot and all the rest of the bots open-sourced by the Eco Community, check out [this post](https://eco.com). There's a member management dashboard, a bot to manage role assignment based on invite links, bots that let you stake and enter sweepstakes with points, and much more.
+For more about The Accountant Bot and all the rest of the bots open-sourced by the Eco Community, check out [this post](https://echo.mirror.xyz/GlFuqSbTZOLDl0LA7eDa0Yibhqq6IHNUC48nd3WJZQw). There's a member management dashboard, a bot to manage role assignment based on invite links, bots that let you stake and enter sweepstakes with points, and much more.
 
 ## Set up your own Accountant
 
