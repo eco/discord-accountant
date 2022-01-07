@@ -29,7 +29,12 @@ import axiosModule from "axios"
 const axiosStub = sinon.stub(axiosModule, "post")
 
 let pool: mysql.Pool
+const CLIENT_ID = "client_Id"
 const client = new Accountant(pool)
+/// @ts-expect-error
+client.user = {
+  id: CLIENT_ID,
+}
 const adminCommand = new AdminCommand()
 const grantCommand = new GrantCommand()
 const sendCommand = new SendCommand()
@@ -329,6 +334,22 @@ describe("Point transfers", () => {
     const senderMessage = createNonAdminMessage()
     senderMessage.mentions.users.set(sender.id, sender)
     senderMessage.content = `!send <@${sender.id}> ${amount} points>`
+
+    // Sender should have the same amount of points
+    const points = await getPoints(sender.id, pool)
+    assert.strictEqual(points.total, amount)
+  })
+
+  it("does not allow a user to send points to the bot", async () => {
+    const sender = nonAdminUser
+
+    const amount = 100
+    await grantPoints(adminUser, nonAdminUser, amount, pool)
+
+    const senderMessage = createNonAdminMessage()
+    /// @ts-expect-error
+    senderMessage.mentions.users.set(client.user.id, client.user)
+    senderMessage.content = `!send <@${client.user.id}> ${amount} points>`
 
     // Sender should have the same amount of points
     const points = await getPoints(sender.id, pool)

@@ -32,6 +32,7 @@ export default class SendCommand extends Command {
     args: { points: number }
   ): Promise<COMMAND_ERROR> {
     const targets = getUsersBeforePoints(message)
+    const client = this.client as Accountant
 
     // Need at least one user and some points
     if (targets.size === 0 || args.points <= 0) {
@@ -42,13 +43,20 @@ export default class SendCommand extends Command {
     }
 
     // Users can't send points to themselves
-    const callerInUsers = targets.has(message.author.id)
-    if (callerInUsers) {
+    const callerInTargets = targets.has(message.author.id)
+    if (callerInTargets) {
       await message.reply("you cannot send Points to yourself.")
       return "INVALID_ARGUMENTS"
     }
 
-    const pool = (this.client as Accountant).pool
+    // Users can't send points to the bot
+    const botInTargets = targets.has(client.user.id)
+    if (botInTargets) {
+      await message.reply("you cannot send Points to me.")
+      return "INVALID_ARGUMENTS"
+    }
+
+    const pool = client.pool
 
     // Check if caller has enough points to send
     const callerPoints = await getPoints(message.author.id, pool)
