@@ -91,6 +91,28 @@ Use this command to run the tests:
 npm run test
 ```
 
+## Command Usage
+
+The bot offers the following commands for your users. The admin commands are only available if you are hosting your own deployment of the bot.
+
+Input is specified with `<value>`. Do not include the `< >` when executing the command. Make sure to include your chosen prefix before the command (the default is `!`.)
+
+### User Commands
+
+- `help` - Returns a list of commands which can be used.
+- `leaderboard <number>` - Returns a list of the top point holders. It has a maximum of 25. No input will default to 10.
+- `ping` - Returns the time it took the bot to respond to a request.
+- `points <@user>` - Returns the amount of points the chosen user has. If no user is mentioned, it will return the points of the message sender.
+- `send <@user> <number>` - Sends the mentioned users the specified amount of points. Multiple users can be specified before the number of points.
+
+### Admin Commands
+
+- `admin add <@user>` - Adds a user as an admin.
+- `admin remove <@user>` - Removes admin privieleges from a user.
+- `admin list` - Provides a list of current admins.
+- `admin stats` - Returns the amount of points and grants distributed to users.
+- `grant <@user> <number>` - Grants the mentioned users the specified amount of points. Multiple users can be specified before the number of points.
+
 ## Questions? Need help?
 
 Hop into [this Discord channel](https://eco.com/discord/ecollaborator) and introduce yourself and we can help out (and give you access to the rest of the Eco Discord).
