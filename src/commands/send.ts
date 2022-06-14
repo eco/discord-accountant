@@ -12,7 +12,7 @@ import { getUsersBeforePoints } from "../functions/get_targets"
 export default class SendCommand extends Command {
   constructor() {
     super("send", {
-      aliases: ["send", "give", "trade", "transfer", "pay"],
+      aliases: ["send", "give", "trade", "transfer", "pay", "eco"],
       category: "main",
       cooldown: 3000,
       ratelimit: 2,
