@@ -9,10 +9,12 @@ import { COMMAND_ERROR } from "../types"
 import { logTransfer } from "../functions/logging"
 import { getUsersBeforePoints } from "../functions/get_targets"
 
+const commandAliases = ["send", "give", "trade", "transfer", "pay", "eco"];
+
 export default class SendCommand extends Command {
   constructor() {
     super("send", {
-      aliases: ["send", "give", "trade", "transfer", "pay", "eco"],
+      aliases: commandAliases,
       category: "main",
       cooldown: 3000,
       ratelimit: 2,
@@ -37,7 +39,7 @@ export default class SendCommand extends Command {
     // Need at least one user and some points
     if (targets.size === 0 || args.points <= 0) {
       await message.reply(
-        "incorrect number of arguments: !send @user [number of Points]"
+        `incorrect number of arguments: ${command} @user [number of Points]`
       )
       return "INVALID_ARGUMENTS"
     }
