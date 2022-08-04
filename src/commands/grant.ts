@@ -41,8 +41,9 @@ export default class GrantCommand extends Command {
     const targets = getUsersBeforePoints(message)
     // Need at least one user and some points
     if (targets.size === 0 || args.points <= 0) {
+      const command = message.content.split(" ")[0];
       await message.reply(
-        "incorrect number of arguments: !grant @user [number of Points]."
+        `incorrect number of arguments: ${command} @user [number of Points]`
       )
       return
     }
