@@ -3,7 +3,9 @@ import {
   Guild,
   GuildChannel,
   NewsChannel,
+  PartialDMChannel,
   TextChannel,
+  ThreadChannel,
 } from "discord.js"
 import {
   POINTS_CHECKING_CHANNELS,
@@ -27,12 +29,12 @@ export function getChannelByType(guild: Guild, type: ChannelType) {
 }
 
 export function getChannelType(
-  channel: TextChannel | DMChannel | NewsChannel | GuildChannel
+  channel: TextChannel | DMChannel | NewsChannel | GuildChannel | ThreadChannel | PartialDMChannel
 ): ChannelType {
-  const isTextChannel = channel.type === "text"
+  const isTextChannel = channel.type === "GUILD_TEXT"
 
   if (
-    channel.type === "dm" ||
+    channel.type === "DM" ||
     (isTextChannel &&
       POINTS_CHECKING_CHANNELS.some((checkingChannel) =>
         channel.name.includes(checkingChannel)
