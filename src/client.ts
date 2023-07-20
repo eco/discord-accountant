@@ -7,6 +7,7 @@ import {
 import { join } from "path"
 import { Pool } from "mysql2/promise"
 import { PREFIX } from "./config"
+import { Intents } from "discord.js"
 
 export class Accountant extends AkairoClient {
   commandHandler: CommandHandler
@@ -15,7 +16,18 @@ export class Accountant extends AkairoClient {
   pool: Pool
 
   constructor(pool: Pool) {
-    super()
+    super(
+      {
+        ownerID: "768554690480701472",
+      },
+      {
+        intents: [
+          Intents.FLAGS.GUILDS,
+          Intents.FLAGS.GUILD_MESSAGES,
+          Intents.FLAGS.GUILD_INTEGRATIONS,
+        ],
+      }
+    )
 
     this.pool = pool
 

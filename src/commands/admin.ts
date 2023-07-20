@@ -41,34 +41,7 @@ export default class PointsCommand extends Command {
     }
     const users = message.mentions.users
 
-    if (command === "add" || command === "remove") {
-      if (users.size === 0) {
-        await sorry(message)
-        return
-      }
-
-      const user = users.first()
-      const exists = await isAdmin(user.id, pool)
-
-      if (command === "add") {
-        // Add user to admin list
-        if (exists) {
-          await message.reply(`${user} is an admin already.`)
-          return
-        }
-        await addAdmin(message.author, user, pool)
-        await message.reply(`${user} was added to the admins.`)
-      } else if (command === "remove") {
-        // Remove user from admin list
-        if (!exists) {
-          await message.reply(`${user} is not an admin.`)
-          return
-        }
-
-        await removeAdmin(user.id, pool)
-        await message.reply(`${user} was removed from the admins.`)
-      }
-    } else if (command === "list") {
+    if (command === "list") {
       const rows = await listAdmins(pool)
 
       let list = ""

@@ -43,3 +43,6 @@ dist/
 # Code coverage
 coverage/
 .nyc_output
+
+# Debugging and admin tools
+admin/
