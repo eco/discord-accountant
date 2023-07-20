@@ -31,7 +31,8 @@ export default class GrantCommand extends Command {
     args: { points: number }
   ): Promise<COMMAND_ERROR> {
     const pool = (this.client as Accountant).pool
-
+    console.log(`${message.author.id} executing grant command`)
+    console.log(`${message.author.id} is admin: ${await isAdmin(message.author.id, pool)}`)
     // Check if caller is in admin list
     if (!(await isAdmin(message.author.id, pool))) {
       await sorry(message)
